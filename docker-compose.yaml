@@ -1,0 +1,16 @@
+version: '3'
+services:
+  user-grpc-service:
+    build: ./user-grpc-service
+    image: eresh.gorantla/user-grpc-service
+  user-rest-service:
+    build: ./user-rest-service
+    image: eresh.gorantla/user-rest-service
+  rest-grpc-aggregator:
+    build: ./rest-grpc-aggregator
+    image: eresh.gorantla/rest-grpc-aggregator
+    ports:
+      - 8080:8080
+    environment:
+      - GRPC_CLIENT_USERDETAILSSERVICE_ADDRESS=static://user-grpc-service:9000
+      - REST_USERDETAILSSERVICE_SERVICE_ENDPOINT=http://user-rest-service:9001

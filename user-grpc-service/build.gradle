@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.rest.grpc.performance'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal() {
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
+}
+
+dependencies {
+    compile 'io.github.lognet:grpc-spring-boot-starter:4.0.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+    compile group: 'com.userdetails.model', name: 'user-details-proto', version: '1.0-SNAPSHOT'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

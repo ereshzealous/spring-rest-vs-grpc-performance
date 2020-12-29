@@ -1,0 +1,3 @@
+rootProject.name = 'spring-rest-vs-grpc-performance'
+include 'user-details-proto'
+

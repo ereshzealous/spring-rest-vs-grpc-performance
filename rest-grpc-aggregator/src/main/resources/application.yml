@@ -1,0 +1,12 @@
+grpc:
+  client:
+    UserDetailsService:
+      address: static://localhost:9000
+      negotiationType: plaintext
+server:
+  port: 8080
+
+rest:
+  UserDetailsService:
+    service:
+      endpoint: http://localhost:9001
